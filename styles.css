@@ -1,0 +1,480 @@
+:root {
+    /* New Teal/Blue-Green Background (Telecom style) */
+    --bg-color: #7beaec;
+    /* A clean, solid turquoise/teal */
+
+    /* Warm Accents for contrast */
+    --primary-color: #FF7043;
+    /* Deep Orange / Coral */
+    --primary-hover: #F4511E;
+    --secondary-color: #E0F2F1;
+    /* Very light teal for inactive elements */
+    --accent-color: #7beaec;
+
+    --text-color: #333;
+    --card-bg: #FFFFFF;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    /* Slightly deeper shadow for modern look */
+    --radius: 12px;
+    /* Slightly tighter radius for "clean" look */
+    --font-family: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    /* Adding subtle pattern overlay to make it less flat but still "clean" */
+    background-image: linear-gradient(135deg, #00897B 0%, #00796B 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+.active {
+    display: block !important;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-color);
+}
+
+/* Login Page */
+#login-page {
+    min-height: 100vh;
+    /* Use min-height to avoid cut-off */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Fix: override the generic .active block display for the flex login page */
+#login-page.active {
+    display: flex !important;
+}
+
+.login-container {
+    background: var(--card-bg);
+    padding: 80px 60px;
+    /* Much larger padding */
+    border-radius: 20px;
+    /* Slightly larger radius for the bigger card */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    /* Deeper shadow for "floating" effect */
+    text-align: center;
+    width: 90%;
+    /* Responsive wide */
+    max-width: 800px;
+    /* Very wide */
+    min-height: 600px;
+    /* Very tall */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Ensure items inside are centered */
+}
+
+/* Ensure inputs don't stretch too wide inside the massive card, or let them fill if desired. 
+   Let's keep them readable but wide. */
+.login-container form {
+    width: 100%;
+    max-width: 400px;
+    /* Check inputs don't get comically wide */
+    margin: 0 auto;
+}
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #f9f9f9;
+}
+
+.login-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+/* Sign Up & Forgot Password Page Styles */
+#signup-page,
+#forgot-password-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#signup-page.active,
+#forgot-password-page.active {
+    display: flex !important;
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: none;
+    font-size: 1.2rem;
+    user-select: none;
+    z-index: 2;
+}
+
+.eye-icon:hover {
+    opacity: 0.7;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-row input {
+    width: 50%;
+}
+
+.family-section-toggle {
+    margin: 20px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.circle-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.circle-btn:hover {
+    transform: scale(1.1);
+}
+
+.family-member-input-group {
+    background: #f1f8f7;
+    /* Very light teal/grey */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    text-align: left;
+}
+
+.remove-member-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #ff5252;
+    cursor: pointer;
+}
+
+/* Home Page */
+.main-header {
+    padding: 15px 20px;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.search-bar {
+    background: #f0f0f0;
+    border: none;
+}
+
+.profile-pic-sm {
+    width: 40px;
+    height: 40px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image: url('https://placehold.co/40x40/orange/white');
+    background-size: cover;
+}
+
+.profile-pic-md {
+    width: 60px;
+    height: 60px;
+    background: #ddd;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    background-image: url('https://placehold.co/60x60/orange/white');
+    background-size: cover;
+}
+
+.profile-pic-lg {
+    width: 100px;
+    height: 100px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    background-image: url('https://placehold.co/100x100/orange/white');
+    background-size: cover;
+}
+
+.main-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--radius);
+    height: fit-content;
+    display: none;
+    /* Hidden on mobile */
+    position: sticky;
+    top: 90px;
+}
+
+.content-area {
+    flex: 1;
+    padding-bottom: 80px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    z-index: 100;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Profile Page */
+#profile-page {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.role-badge {
+    background: var(--secondary-color);
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #d66c2d;
+}
+
+.profile-details {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.detail-item:last-child {
+    border: none;
+}
+
+.family-grid {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.family-member {
+    text-align: center;
+}
+
+.avatar-sm {
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    background-image: url('https://placehold.co/50x50/ffab76/white');
+    background-size: cover;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    .content-area {
+        padding-bottom: 20px;
+    }
+}

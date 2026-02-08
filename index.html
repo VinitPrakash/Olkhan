@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olkan - Community</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Login Page -->
+        <section id="login-page" class="page active">
+            <div class="login-container">
+                <div class="logo-circle">O</div>
+                <h1>Welcome to Olkan</h1>
+                <form id="login-form">
+                    <input type="text" placeholder="Email or Mobile Number" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <div class="login-links">
+                        <a href="#" class="link" id="forgot-password-link">Forgot Password?</a>
+                        <a href="#" class="link" id="signup-link">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Sign Up Page -->
+        <section id="signup-page" class="page hidden">
+            <div class="login-container"> <!-- Reuse login container style for consistency -->
+                <div class="logo-circle">O</div>
+                <h1>Create Account</h1>
+                <form id="signup-form">
+                    <div class="input-row">
+                        <input type="text" placeholder="First Name" required>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <input type="tel" placeholder="Mobile Number" required>
+                    <input type="email" placeholder="Email Address" required>
+
+                    <div class="family-section-toggle">
+                        <button type="button" id="add-family-btn" class="btn-icon circle-btn">+</button>
+                        <span>Add Family Members <small>(Optional)</small></span>
+                    </div>
+
+                    <div id="family-members-container" class="hidden">
+                        <!-- Dynamic family members will go here -->
+                    </div>
+
+                    <button type="submit" class="btn-primary">Register</button>
+                    <div class="login-links" style="justify-content: center;">
+                        <span style="font-size: 0.9rem;">Already have an account? <a href="#" class="link"
+                                id="login-link">Login</a></span>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Forgot Password Page -->
+        <section id="forgot-password-page" class="page hidden">
+            <div class="login-container">
+                <div class="logo-circle">O</div>
+                <h1>Reset Password</h1>
+                <form id="forgot-password-form">
+                    <!-- Step 1: Email -->
+                    <div id="step-email">
+                        <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">Enter your email to receive a
+                            verification code.</p>
+                        <input type="email" id="reset-email" placeholder="Email Address" required>
+                        <button type="button" id="get-code-btn" class="btn-primary" style="margin-top: 10px;">Get
+                            Code</button>
+                    </div>
+
+                    <!-- Step 2: Verify Code (Hidden) -->
+                    <div id="step-code" class="hidden">
+                        <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">Enter the code sent to your
+                            email.</p>
+                        <input type="text" id="verification-code" placeholder="Enter Code">
+                        <button type="button" id="verify-code-btn" class="btn-primary" style="margin-top: 10px;">Verify
+                            Code</button>
+                    </div>
+
+                    <!-- Step 3: New Password (Hidden) -->
+                    <div id="step-password" class="hidden">
+                        <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">Create a strong password.</p>
+
+                        <div class="password-wrapper">
+                            <input type="password" id="new-password" placeholder="New Password">
+                            <span class="eye-icon" onclick="togglePassword('new-password', this)">👁️</span>
+                        </div>
+
+                        <div class="password-wrapper">
+                            <input type="password" id="confirm-password" placeholder="Confirm Password">
+                            <span class="eye-icon" onclick="togglePassword('confirm-password', this)">👁️</span>
+                        </div>
+
+                        <ul class="password-requirements"
+                            style="text-align: left; font-size: 0.8rem; color: #888; margin: 10px 0; padding-left: 20px;">
+                            <li>At least 1 Capital Letter</li>
+                            <li>At least 1 Number</li>
+                            <li>At least 1 Unique Symbol (!@#$ etc.)</li>
+                        </ul>
+
+                        <button type="button" id="reset-password-btn" class="btn-primary"
+                            style="margin-top: 10px;">Reset Password</button>
+                    </div>
+
+                    <div class="login-links" style="justify-content: center; margin-top: 20px;">
+                        <a href="#" class="link" id="back-to-login-link">Back to Login</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Home Page -->
+        <section id="home-page" class="page hidden">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <div class="profile-pic-sm" id="header-profile-pic"></div>
+                </div>
+                <div class="header-center">
+                    <input type="text" placeholder="Search people, families, events..." class="search-bar">
+                </div>
+                <div class="header-right">
+                    <button class="menu-btn">☰</button>
+                </div>
+            </header>
+
+            <div class="main-layout">
+                <!-- Sidebar (Desktop) -->
+                <aside class="sidebar">
+                    <div class="profile-summary">
+                        <div class="profile-pic-md"></div>
+                        <h3>John Doe</h3>
+                    </div>
+                    <nav class="desktop-nav">
+                        <button class="nav-item active" data-target="home-section">Home</button>
+                        <button class="nav-item" data-target="families-section">Families</button>
+                        <button class="nav-item" data-target="members-section">Members</button>
+                        <button class="nav-item" data-target="events-section">Events</button>
+                        <button class="nav-item" data-target="news-section">News</button>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="content-area">
+                    <div id="home-section" class="content-section active">
+                        <h2>Community Updates</h2>
+                        <div id="updates-feed"></div>
+
+                        <h2>Upcoming Events</h2>
+                        <div id="events-feed"></div>
+
+                        <h2>Community News</h2>
+                        <div id="news-feed"></div>
+                    </div>
+                    <div id="families-section" class="content-section hidden">
+                        <h2>Families</h2>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div id="members-section" class="content-section hidden">
+                        <h2>Members</h2>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div id="events-section" class="content-section hidden">
+                        <h2>All Events</h2>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div id="news-section" class="content-section hidden">
+                        <h2>All News</h2>
+                        <p>Coming Soon</p>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Bottom Nav (Mobile) -->
+            <nav class="mobile-nav">
+                <button class="nav-item active" data-target="home-section">Home</button>
+                <button class="nav-item" data-target="families-section">Families</button>
+                <button class="nav-item" data-target="events-section">Events</button>
+                <button class="nav-item" data-target="news-section">News</button>
+                <button class="nav-item" data-target="more-section">More</button>
+            </nav>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profile-page" class="page hidden">
+            <button class="back-btn">← Back</button>
+            <div class="profile-header">
+                <div class="profile-pic-lg"></div>
+                <h2>John Doe</h2>
+                <span class="role-badge">Member</span>
+            </div>
+            <div class="profile-details">
+                <div class="detail-item">
+                    <span class="label">Phone</span>
+                    <span class="value">+1 234 567 8900</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Email</span>
+                    <span class="value">john.doe@example.com</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Location</span>
+                    <span class="value">New York, USA</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Joined</span>
+                    <span class="value">Jan 2024</span>
+                </div>
+            </div>
+            <div class="family-section">
+                <h3>Family Members</h3>
+                <div class="family-grid">
+                    <div class="family-member">
+                        <div class="avatar-sm"></div>
+                        <span>Jane</span>
+                    </div>
+                    <div class="family-member">
+                        <div class="avatar-sm"></div>
+                        <span>Bob</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-secondary">Edit Profile</button>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
